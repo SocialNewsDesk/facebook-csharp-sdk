@@ -90,6 +90,21 @@ namespace Facebook
         /// Initializes a new instance of the <see cref="FacebookApiException"/> class.
         /// </summary>
         /// <param name="message">The message.</param>
+        /// <param name="errorType">Type of the error.</param>
+        /// <param name="errorCode">Code of the error.</param>
+        /// <param name="errorSubcode">Subcode of the error.</param>
+        /// <param name="traceId">fbtrace_id of the error.</param>
+        public FacebookApiException(string message, string errorType, int errorCode, int errorSubcode, string traceId)
+            : this(message, errorType, errorCode)
+        {
+            ErrorSubcode = errorSubcode;
+            TraceId = traceId;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FacebookApiException"/> class.
+        /// </summary>
+        /// <param name="message">The message.</param>
         /// <param name="innerException">The inner exception.</param>
         public FacebookApiException(string message, Exception innerException)
             : base(message, innerException)
@@ -137,5 +152,10 @@ namespace Facebook
         /// Gets or sets the error user message.
         /// </summary>
         public string ErrorUserMsg { get; set; }
+
+        /// <summary>
+        /// Gets or sets the fbtrace_id
+        /// </summary>
+        public string TraceId { get; set; }
     }
 }

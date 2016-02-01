@@ -804,6 +804,10 @@ namespace Facebook
                     if (error.ContainsKey("error_user_msg"))
                         errorUserMsg = (string)error["error_user_msg"];
 
+                    string fbTraceId = null;
+                    if (error.ContainsKey("fbtrace_id"))
+                        fbTraceId = error["fbtrace_id"] as string;
+
                     // Check to make sure the correct data is in the response
                     if (!string.IsNullOrEmpty(errorType) && !string.IsNullOrEmpty(errorMessage))
                     {
@@ -814,7 +818,7 @@ namespace Facebook
                         else if (errorType == "API_EC_TOO_MANY_CALLS" || (errorMessage.Contains("request limit reached")))
                             resultException = new FacebookApiLimitException(errorMessage, errorType);
                         else
-                            resultException = new FacebookApiException(errorMessage, errorType, errorCode, errorSubcode);
+                            resultException = new FacebookApiException(errorMessage, errorType, errorCode, errorSubcode, fbTraceId);
                     }
 
                     resultException.ErrorUserTitle = errorUserTitle;
