@@ -61,6 +61,18 @@ namespace Facebook
         /// <summary>
         /// Initializes a new instance of the <see cref="FacebookApiLimitException"/> class. 
         /// </summary>
+        /// <param name="message">The message.</param>
+        /// <param name="errorType">The error type.</param>
+        /// <param name="traceId">The Trace Id of the error.</param>
+        public FacebookApiLimitException(string message, string errorType, string traceId)
+            : base(message, errorType)
+        {
+            TraceId = traceId;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FacebookApiLimitException"/> class. 
+        /// </summary>
         /// <param name="message">
         /// The message.
         /// </param>

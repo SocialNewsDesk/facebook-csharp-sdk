@@ -83,6 +83,19 @@ namespace Facebook
         /// Initializes a new instance of the <see cref="FacebookOAuthException"/> class.
         /// </summary>
         /// <param name="message">The message.</param>
+        /// <param name="errorType">Type of the error.</param>
+        /// <param name="errorCode">Code of the error.</param>
+        /// <param name="errorSubcode">Subcode of the error.</param>
+        /// <param name="traceId">Trace Id of the error.</param>
+        public FacebookOAuthException(string message, string errorType, int errorCode, int errorSubcode, string traceId)
+            : base(message, errorType, errorCode, errorSubcode, traceId)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FacebookOAuthException"/> class.
+        /// </summary>
+        /// <param name="message">The message.</param>
         /// <param name="innerException">The inner exception.</param>
         public FacebookOAuthException(string message, Exception innerException)
             : base(message, innerException)

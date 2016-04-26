@@ -814,9 +814,9 @@ namespace Facebook
                         // We don't include the inner exception because it is not needed and is always a WebException.
                         // It is easier to understand the error if we use Facebook's error message.
                         if (errorType == "OAuthException")
-                            resultException = new FacebookOAuthException(errorMessage, errorType, errorCode, errorSubcode);
+                            resultException = new FacebookOAuthException(errorMessage, errorType, errorCode, errorSubcode, fbTraceId);
                         else if (errorType == "API_EC_TOO_MANY_CALLS" || (errorMessage.Contains("request limit reached")))
-                            resultException = new FacebookApiLimitException(errorMessage, errorType);
+                            resultException = new FacebookApiLimitException(errorMessage, errorType, fbTraceId);
                         else
                             resultException = new FacebookApiException(errorMessage, errorType, errorCode, errorSubcode, fbTraceId);
                     }
